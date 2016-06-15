@@ -36,19 +36,31 @@
 #pragma mark -
 #pragma mark Lifecycle
 
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if ((self = [super initWithCoder:aDecoder])) {
+        [self initializeAdViewWithId:self.adUnitId andSize:MOPUB_BANNER_SIZE];
+    }
+    return self;
+}
+
 - (id)initWithAdUnitId:(NSString *)adUnitId size:(CGSize)size
 {
     CGRect f = (CGRect){{0, 0}, size};
-    if (self = [super initWithFrame:f])
-    {
-        self.backgroundColor = [UIColor clearColor];
-        self.clipsToBounds = YES;
-        self.originalSize = size;
-        self.allowedNativeAdOrientation = MPNativeAdOrientationAny;
-        self.adUnitId = (adUnitId) ? adUnitId : DEFAULT_PUB_ID;
-        self.adManager = [[MPInstanceProvider sharedProvider] buildMPBannerAdManagerWithDelegate:self];
+    if (self = [super initWithFrame:f]) {
+        [self initializeAdViewWithId:adUnitId andSize:size];
     }
     return self;
+}
+
+- (void)initializeAdViewWithId:(NSString *)adUnitId andSize:(CGSize)size
+{
+    self.backgroundColor = [UIColor clearColor];
+    self.clipsToBounds = YES;
+    self.originalSize = size;
+    self.allowedNativeAdOrientation = MPNativeAdOrientationAny;
+    self.adUnitId = (adUnitId) ? adUnitId : DEFAULT_PUB_ID;
+    self.adManager = [[MPInstanceProvider sharedProvider] buildMPBannerAdManagerWithDelegate:self];
 }
 
 - (void)dealloc

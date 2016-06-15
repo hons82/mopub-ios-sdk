@@ -55,7 +55,7 @@ typedef enum
  * application set aside for advertising. If no ad unit ID is set, the ad view will use a default
  * ID that only receives test ads.
  */
-@property (nonatomic, copy) NSString *adUnitId;
+@property (nonatomic, copy) IBInspectable NSString *adUnitId;
 
 /**
  * A string representing a set of keywords that should be passed to the MoPub ad server to receive
@@ -67,7 +67,7 @@ typedef enum
  * On the MoPub website, keyword targeting options can be found under the "Advanced Targeting"
  * section when managing campaigns.
  */
-@property (nonatomic, copy) NSString *keywords;
+@property (nonatomic, copy) IBInspectable NSString *keywords;
 
 /**
  * A `CLLocation` object representing a user's location that should be passed to the MoPub ad server
@@ -84,7 +84,7 @@ typedef enum
  * @warning **Important**: If you set this value to YES, make sure to reset it to NO before
  * submitting your application to the App Store.
  */
-@property (nonatomic, assign, getter = isTesting) BOOL testing;
+@property (nonatomic, assign, getter = isTesting) IBInspectable BOOL testing;
 
 /** @name Loading a Banner Ad */
 
